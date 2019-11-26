@@ -13,7 +13,6 @@
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <user :message-unread-count="unreadCount" :user-avatar="userAvatar"/>
-          <language v-if="$config.useI18n" @on-lang-change="setLocal" style="margin-right: 10px;" :lang="local"/>
           <error-store v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader" :has-read="hasReadErrorPage" :count="errorCount"></error-store>
           <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
         </header-bar>
@@ -41,7 +40,6 @@ import TagsNav from './components/tags-nav'
 import User from './components/user'
 import ABackTop from './components/a-back-top'
 import Fullscreen from './components/fullscreen'
-import Language from './components/language'
 import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
@@ -54,7 +52,6 @@ export default {
   components: {
     SideMenu,
     HeaderBar,
-    Language,
     TagsNav,
     Fullscreen,
     ErrorStore,
@@ -172,7 +169,7 @@ export default {
     })
     this.setBreadCrumb(this.$route)
     // 设置初始语言
-    this.setLocal(this.$i18n.locale)
+    // this.setLocal(this.$i18n.locale)
     // 如果当前打开页面不在标签栏中，跳到homeName页
     if (!this.tagNavList.find(item => item.name === this.$route.name)) {
       this.$router.push({
