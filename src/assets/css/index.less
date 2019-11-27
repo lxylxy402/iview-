@@ -1,0 +1,14 @@
+// vue整体样式的跟换
+.app {
+  // 设置左侧菜单栏选中样式覆盖
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
+    color: @white-color;
+    background: @primary-color;
+  }
+  // 子集菜单颜色变更
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+    border-right: none;
+    color: @primary-color !important;
+    background: @white-color !important;
+  }
+}

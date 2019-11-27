@@ -13,6 +13,7 @@
         :data="treeData"
       ></tree-select>
       <Button @click="changeTreeSelectData">更新选中数据</Button>
+      <div class='new'>数据</div>
       <Button @click="changeTreeData">更新树数据</Button>
   </div>
 </template>
@@ -85,6 +86,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang='less'>
+.new {
+  color: @link-color;
+  backgroud: @link-color;
+}
 </style>

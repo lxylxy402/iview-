@@ -25,19 +25,29 @@ module.exports = {
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
   baseUrl: BASE_URL,
+
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
   lintOnSave: true,
+
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
       .set('_c', resolve('src/components'))
   },
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: "less",
+      patterns: [path.resolve(__dirname, "./src/assets/css/theme.less")] // 指定全局变量的less文件
+      // injector: 'append'
+    }
+  },
   // 设为false打包时不生成.map文件
-  productionSourceMap: false
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
   // devServer: {
   //   proxy: 'localhost:3000'
   // }
+  productionSourceMap: false
 }
+

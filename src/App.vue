@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class='app'>
     <router-view/>
   </div>
 </template>
@@ -20,6 +20,7 @@ html,body{
   overflow: hidden;
   margin: 0;
   padding: 0;
+  // color: @white-color;
 }
 #app {
   .size;
