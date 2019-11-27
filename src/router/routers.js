@@ -132,15 +132,6 @@ export default [
         component: () => import('@/view/components/split-pane/split-pane.vue')
       },
       {
-        path: 'markdown_page',
-        name: 'markdown_page',
-        meta: {
-          icon: 'logo-markdown',
-          title: 'Markdown编辑器'
-        },
-        component: () => import('@/view/components/markdown/markdown.vue')
-      },
-      {
         path: 'editor_page',
         name: 'editor_page',
         meta: {
