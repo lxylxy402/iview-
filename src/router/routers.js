@@ -281,7 +281,7 @@ export default [
     path: '/directive',
     name: 'directive',
     meta: {
-      hideInBread: true
+      hideInBread: false
     },
     component: Main,
     children: [
