@@ -39,7 +39,7 @@ module.exports = {
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: "less",
-      patterns: [path.resolve(__dirname, "./src/assets/css/theme.less")] // 指定全局变量的less文件
+      patterns: [path.resolve(__dirname, "src/assets/less/theme.less")] // 指定全局变量的less文件
       // injector: 'append'
     }
   },
