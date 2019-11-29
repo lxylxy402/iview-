@@ -87,7 +87,7 @@ export default {
     }
   },
   mounted () {
-    localStorage.clear()
+    this.$store.commit('resetMenulist')
   }
 }
 </script>

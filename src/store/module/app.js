@@ -88,15 +88,16 @@ export default {
     setHasReadErrorLoggerStatus (state, status = true) {
       state.hasReadErrorPage = status
     },
-    updateAppRouter (state, routes) {
-      router.addRoutes(routes)
-    },
     // 设置路由
     updateMenulist (state, data) {
       const menuRoutes = setRouter(Main, data)
       router.matcher = createRouter(routers).matcher
       router.addRoutes(menuRoutes.filter(item => item.children.length > 0))
       routers.push(...menuRoutes.filter(item => item.children.length > 0))
+    },
+    // 重置路由
+    resetMenulist (state) {
+      routers.splice(7, routers.length)
     }
   },
   actions: {
@@ -115,7 +116,7 @@ export default {
       })
     },
     async initRouter ({ commit }, data) {
-      commit('resetMenulist', data)
+      commit('updateMenulist', data)
       localStorage.menuList = JSON.stringify(data)
     }
   }
