@@ -8,13 +8,15 @@ import {
   routeHasExist,
   routeEqual,
   getRouteTitleHandled,
-  localSave,
+  setRouter,
   localRead
 } from '@/libs/util'
 import { saveErrorLogger } from '@/api/data'
 import router from '@/router'
 import routers from '@/router/routers'
+import Router from 'vue-router'
 import config from '@/config'
+import Main from '@/components/main'
 const { homeName } = config
 
 const closePage = (state, route) => {
@@ -24,6 +26,10 @@ const closePage = (state, route) => {
   })
   router.push(nextRoute)
 }
+const createRouter = routes => new Router({
+  mode: 'history',
+  routes
+})
 
 export default {
   state: {
@@ -76,15 +82,21 @@ export default {
         setTagNavListInLocalstorage([...state.tagNavList])
       }
     },
-    setLocal (state, lang) {
-      localSave('local', lang)
-      state.local = lang
-    },
     addError (state, error) {
       state.errorList.push(error)
     },
     setHasReadErrorLoggerStatus (state, status = true) {
       state.hasReadErrorPage = status
+    },
+    updateAppRouter (state, routes) {
+      router.addRoutes(routes)
+    },
+    // 设置路由
+    updateMenulist (state, data) {
+      const menuRoutes = setRouter(Main, data)
+      router.matcher = createRouter(routers).matcher
+      router.addRoutes(menuRoutes.filter(item => item.children.length > 0))
+      routers.push(...menuRoutes.filter(item => item.children.length > 0))
     }
   },
   actions: {
@@ -101,6 +113,10 @@ export default {
       saveErrorLogger(info).then(() => {
         commit('addError', data)
       })
+    },
+    async initRouter ({ commit }, data) {
+      commit('resetMenulist', data)
+      localStorage.menuList = JSON.stringify(data)
     }
   }
 }

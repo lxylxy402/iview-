@@ -34,7 +34,11 @@ Vue.prototype.$config = config
  */
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
-
+const list = localStorage.menuList
+const localRoutes = list ? JSON.parse(list) : []
+if (localRoutes.length) {
+  store.commit('updateMenulist', localRoutes)
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

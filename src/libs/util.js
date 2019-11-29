@@ -2,8 +2,8 @@ import Cookies from 'js-cookie'
 // cookie保存的天数
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
+import lazyLoading from '@/libs/lazyLoading.js'
 const { title, cookieExpires, useI18n } = config
-
 export const TOKEN_KEY = 'token'
 
 export const setToken = (token) => {
@@ -25,6 +25,28 @@ const showThisMenuEle = (item, access) => {
     if (hasOneOf(item.meta.access, access)) return true
     else return false
   } else return true
+}
+
+// 设置路由
+export const setRouter = (Main, data) => {
+  const menuRoutes = []
+  const genRouterMenu = (r, data) => {
+    for (let item of data) {
+      let menu = Object.assign({}, item)
+      if (menu.component === 'Main') {
+        menu.component = Main
+      } else {
+        menu.component = lazyLoading(menu.component)
+      }
+      if (item.children && item.children.length > 0) {
+        menu.children = []
+        genRouterMenu(menu.children, item.children)
+      }
+      r.push(menu)
+    }
+  }
+  genRouterMenu(menuRoutes, data)
+  return menuRoutes
 }
 /**
  * @param {Array} list 通过路由列表得到菜单列表
