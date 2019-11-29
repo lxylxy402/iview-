@@ -46,8 +46,16 @@ module.exports = {
   // 设为false打包时不生成.map文件
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
   // devServer: {
-  //   proxy: 'localhost:3000'
-  // }
+  //   proxy: {
+  //     '/SQBusiness': {
+  //       target: 'http://jaaint.f3322.net:28080/',
+  //       changeOrigin: true, // 是否跨域
+  //       'headers': {
+  //         'Access-Control-Allow-origin': '*'
+  //       }
+  //     }
+  //   }
+  // },
   productionSourceMap: false
 }
 

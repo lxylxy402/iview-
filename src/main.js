@@ -39,7 +39,6 @@ Vue.directive('clickOutside', clickOutside)
 new Vue({
   el: '#app',
   router,
-  // i18n,
   store,
   render: h => h(App)
 })
