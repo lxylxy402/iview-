@@ -23,6 +23,7 @@ export default {
     },
     defaultSearch (state) {
       state.search = { ...search }
+      console.log(state.search)
     }
   }
 }

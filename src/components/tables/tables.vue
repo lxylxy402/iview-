@@ -1,6 +1,10 @@
 <template>
   <div class='tables'>
     <Card>
+      <div class='marginBot'>
+        <Button class='marginR' @click='onAdd'><Icon type="md-add" /> 新增</Button>
+        <Button type='error' class='marginR' @click='onDelete'><Icon type="md-trash" /> 删除</Button>
+      </div>
       <Table
         ref="tablesMain"
         :height='tableHeight'
@@ -34,7 +38,7 @@
       </Table>
       <Page
         :total="search.total"
-        :current='search.current'
+        :current.sync='search.current'
         :page-size='search.pageSize'
         @on-change='onPageChange'
         @on-page-size-change='onPageSizeChange'
@@ -122,6 +126,15 @@ export default {
     searchPlace: {
       type: String,
       default: 'top'
+    },
+    deleteText: {
+      type: Object,
+      default () {
+        return {
+          title: '确认删除',
+          body: ''
+        }
+      }
     }
   },
   /**
@@ -147,13 +160,26 @@ export default {
   },
   computed: {
     ...mapState({
-      search: state => state.page.search
+      search: state => state.tables.search
     })
   },
   methods: {
     ...mapMutations([
       'setSearch'
     ]),
+    // 删除
+    onDelete (row) {
+      this.$Modal.confirm({
+        title: this.deleteText.title ? '确认删除' : this.deleteText.title,
+        content: `<p>确认删除${this.deleteText.body}？</p>`,
+        onOk: () => {
+          this.$emit('on-delete', row)
+        }
+      })
+    },
+    onAdd () {
+      this.$emit('on-add')
+    },
     // 改变页码
     onPageChange (page) {
       console.log(page)

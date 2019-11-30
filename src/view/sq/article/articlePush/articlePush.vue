@@ -19,6 +19,9 @@ export default {
       console.log(height)
     }
   },
+  created () {
+    console.log('进入页面')
+  },
   mounted () {
     this.getTableHeight()
   }

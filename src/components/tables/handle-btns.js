@@ -12,7 +12,7 @@ const btns = {
       style,
       on: {
         'click': () => {
-          vm.$emit('on-delete', params)
+          vm.onDelete(params.row)
         }
       }
     })

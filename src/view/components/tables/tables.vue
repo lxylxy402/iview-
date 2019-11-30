@@ -1,7 +1,10 @@
 <template>
   <div>
-      <tables ref="tables" editable searchable search-place="top" v-model="tableData" :columns="columns" @on-delete="handleDelete"/>
-      <!-- <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button> -->
+    <Card class='marginBot'>
+      <Input class='searchW'></Input>
+      <Button type='primary' class='marginL'>查找</Button>
+    </Card>
+    <tables ref="tables" editable searchable search-place="top" v-model="tableData" :columns="columns" @on-delete="handleDelete"></tables>
   </div>
 </template>
 
@@ -49,6 +52,7 @@ export default {
   },
   methods: {
     handleDelete (params) {
+      console.log('params删除')
       console.log(params)
     },
     exportExcel () {
