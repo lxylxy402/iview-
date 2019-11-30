@@ -278,6 +278,8 @@ export default {
     },
     // 在多选模式下有效，选中某一项时触发
     onSelect (selection, row) {
+      console.log(selection)
+      console.log(row)
       this.$emit('on-select', selection, row)
     },
     // 在多选模式下有效，取消选中某一项时触发

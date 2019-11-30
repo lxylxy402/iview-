@@ -26,15 +26,3 @@ export default {
   }
 }
 </script>
-<style lang="less">
-.logout{
-  &-btn-con .ivu-tooltip-rel{
-    margin-right: 20px;
-    height: 30px;
-    line-height: 30px;
-    i{
-      cursor: pointer;
-    }
-  }
-}
-</style>
