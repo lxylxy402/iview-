@@ -1,9 +1,7 @@
 <template>
   <div>
-    <Card>
       <tables ref="tables" editable searchable search-place="top" v-model="tableData" :columns="columns" @on-delete="handleDelete"/>
-      <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
-    </Card>
+      <!-- <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button> -->
   </div>
 </template>
 
@@ -24,7 +22,8 @@ export default {
         {
           title: 'Handle',
           key: 'handle',
-          options: ['delete'],
+          options: ['edit', 'check', 'delete'],
+          align: 'center',
           button: [
             (h, params, vm) => {
               return h('Poptip', {
@@ -61,6 +60,8 @@ export default {
   mounted () {
     getTableData().then(res => {
       this.tableData = res.data
+      console.log('tableData')
+      console.log(this.tableData)
     })
   }
 }

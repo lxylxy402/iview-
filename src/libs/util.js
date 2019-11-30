@@ -419,3 +419,21 @@ export const setTitle = (routeItem, vm) => {
   const resTitle = pageTitle ? `${title} - ${pageTitle}` : title
   window.document.title = resTitle
 }
+
+// 获取表格高度
+function getElementTop (elem) {
+  let elemTop = elem.offsetTop
+  elem = elem.offsetParent
+  while (elem !== null) {
+    elemTop += elem.offsetTop
+    elem = elem.offsetParent
+  }
+  return elemTop
+}
+
+export const getTableHeight = elem => {
+  const offsetTop = getElementTop(elem)
+  const winHeight = document.documentElement.offsetHeight || document.body.offsetHeight
+  const height = winHeight - offsetTop - 20
+  return height > 0 ? height : 0
+}

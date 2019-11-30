@@ -1,32 +1,49 @@
+const style = {
+  marginRight: '5px'
+}
 const btns = {
   delete: (h, params, vm) => {
-    return h('Poptip', {
+    return h('Button', {
       props: {
-        confirm: true,
-        title: '你确定要删除吗?'
+        type: 'error',
+        icon: 'md-trash',
+        size: 'small'
       },
+      style,
       on: {
-        'on-ok': () => {
+        'click': () => {
           vm.$emit('on-delete', params)
-          vm.$emit('input', params.tableData.filter((item, index) => index !== params.row.initRowIndex))
         }
       }
-    }, [
-      h('Button', {
-        props: {
-          type: 'text',
-          ghost: true
+    })
+  },
+  edit: (h, params, vm) => {
+    return h('Button', {
+      style,
+      props: {
+        icon: 'ios-create-outline',
+        size: 'small'
+      },
+      on: {
+        'click': () => {
+          vm.$emit('on-edit', params)
         }
-      }, [
-        h('Icon', {
-          props: {
-            type: 'md-trash',
-            size: 18,
-            color: '#000000'
-          }
-        })
-      ])
-    ])
+      }
+    })
+  },
+  check: (h, params, vm) => {
+    return h('Button', {
+      style,
+      props: {
+        icon: 'ios-search',
+        size: 'small'
+      },
+      on: {
+        'click': () => {
+          vm.$emit('on-check', params)
+        }
+      }
+    })
   }
 }
 

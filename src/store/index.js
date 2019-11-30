@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import user from './module/user'
 import app from './module/app'
+import page from './module/page'
 
 Vue.use(Vuex)
 
@@ -11,13 +12,13 @@ export default new Vuex.Store({
     //
   },
   mutations: {
-    //
   },
   actions: {
     //
   },
   modules: {
     user,
-    app
+    app,
+    page
   }
 })
