@@ -27,7 +27,6 @@
             <keep-alive :include="cacheList">
               <router-view/>
             </keep-alive>
-            <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
           </Content>
         </Layout>
       </Content>
@@ -39,7 +38,6 @@ import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
 import TagsNav from './components/tags-nav'
 import User from './components/user'
-import ABackTop from './components/a-back-top'
 import Fullscreen from './components/fullscreen'
 import Message from './components/message'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
@@ -58,8 +56,7 @@ export default {
     Fullscreen,
     Message,
     User,
-    Loginout,
-    ABackTop
+    Loginout
   },
   data () {
     return {
