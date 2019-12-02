@@ -19,7 +19,7 @@ export default {
   data () {
     return {
       columns: [
-        { width: 60, align: 'center', type: 'selection' },
+        { width: 40, align: 'center', type: 'selection' },
         { title: 'Name', key: 'name', sortable: true },
         { title: 'Email', key: 'email', editable: true },
         { title: 'Create-Time', key: 'createTime' },

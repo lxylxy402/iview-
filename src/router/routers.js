@@ -51,6 +51,26 @@ export default [
     ]
   },
   {
+    path: '/system',
+    name: 'system',
+    meta: {
+      icon: 'ios-cog',
+      title: '系统设置'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'user',
+        name: 'user',
+        meta: {
+          icon: 'ios-document',
+          title: '用户管理'
+        },
+        component: () => import('@/containers/system/user/user.vue')
+      }
+    ]
+  },
+  {
     path: '/components',
     name: 'components',
     meta: {

@@ -21,6 +21,7 @@
         :size="size"
         :no-data-text="noDataText"
         :no-filtered-data-text="noFilteredDataText"
+        :show-summary='summary'
         @on-current-change="onCurrentChange"
         @on-select="onSelect"
         @on-select-cancel="onSelectCancel"
@@ -135,6 +136,10 @@ export default {
           body: ''
         }
       }
+    },
+    summary: { // 是否合计
+      type: Boolean,
+      default: false
     }
   },
   /**
@@ -243,6 +248,7 @@ export default {
         if (handleBtns[item]) insideBtns.push(handleBtns[item])
       })
       let btns = item.button ? insideBtns.concat(item.button) : insideBtns
+      item.width = item.width || 120
       item.render = (h, params) => {
         params.tableData = this.value
         return h('div', btns.map(item => item(h, params, this)))
@@ -251,6 +257,8 @@ export default {
     },
     handleColumns (columns) {
       this.insideColumns = this.columns.map((item, index) => {
+        // 全部默认居中
+        item.align = item.align || 'center'
         let res = item
         if (res.editable) res = this.suportEdit(res, index)
         if (res.key === 'handle') res = this.surportHandle(res)
@@ -278,8 +286,6 @@ export default {
     },
     // 在多选模式下有效，选中某一项时触发
     onSelect (selection, row) {
-      console.log(selection)
-      console.log(row)
       this.$emit('on-select', selection, row)
     },
     // 在多选模式下有效，取消选中某一项时触发
@@ -291,7 +297,9 @@ export default {
       this.$emit('on-select-all', selection)
     },
     // 在多选模式下有效，只要选中项发生变化时就会触发
-    onSelectionChange (selection) {
+    onSelectionChange (selection, row) {
+      console.log(selection)
+      console.log(row)
       this.$emit('on-selection-change', selection)
     },
     // 排序时有效，当点击排序时触发
